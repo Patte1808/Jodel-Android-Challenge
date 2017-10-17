@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jodelapp.R;
 import com.jodelapp.features.photos.models.PhotoPresentationModel;
@@ -49,6 +50,9 @@ public class UserPhotoListAdapter extends RecyclerView.Adapter<RecyclerView.View
         @BindView(R.id.tv_item_photo)
         ImageView tvItemPhoto;
 
+        @BindView(R.id.tv_item_title)
+        TextView tvItemTitle;
+
         PhotoItemViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
@@ -57,6 +61,7 @@ public class UserPhotoListAdapter extends RecyclerView.Adapter<RecyclerView.View
         void render(PhotoPresentationModel photoPresentationModel) {
             Picasso.with(this.itemView.getContext()).load(photoPresentationModel.getUrl())
                     .into(tvItemPhoto);
+            tvItemTitle.setText(photoPresentationModel.getTitle());
         }
     }
 }

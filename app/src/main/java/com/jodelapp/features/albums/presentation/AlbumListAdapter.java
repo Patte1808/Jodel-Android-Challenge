@@ -25,15 +25,20 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private final List<AlbumPresentationModel> albumDataList = new ArrayList<>();
 
-    public AlbumListAdapter(List<AlbumPresentationModel> albumDataList) {
+    private final View.OnClickListener onClickListener;
+
+    public AlbumListAdapter(List<AlbumPresentationModel> albumDataList, View.OnClickListener onClickListener) {
         this.albumDataList.clear();
         this.albumDataList.addAll(albumDataList);
+        this.onClickListener = onClickListener;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AlbumItemViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_album, parent, false));
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list_album, parent, false);
+        v.setOnClickListener(onClickListener);
+        return new AlbumItemViewHolder(v);
     }
 
     @Override
@@ -49,7 +54,9 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
 
-    class AlbumItemViewHolder extends RecyclerView.ViewHolder {
+    class AlbumItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        protected View parent;
+
         @BindView(R.id.tv_item_album_photo)
         ImageView tvItemPhoto;
 
@@ -57,17 +64,25 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         TextView tvItemTitle;
 
         @BindView(R.id.tv_item_album_card_view)
-        CardView tvItemPhotoCardView;
+        CardView tvItemAlbumCardView;
 
         AlbumItemViewHolder(View view) {
             super(view);
+            parent = ((ViewGroup) view).getChildAt(0);
             ButterKnife.bind(this, view);
+        }
+
+        @Override
+        public void onClick(View view)
+        {
+            onClickListener.onClick(parent);
         }
 
         void render(AlbumPresentationModel albumPresentationModel) {
             /*Picasso.with(this.itemView.getContext()).load(albumPresentationModel.getUrl())
                     .into(tvItemPhoto);*/
             tvItemTitle.setText(albumPresentationModel.getTitle());
+
             //tvItemPhotoCardView.setCardBackgroundColor(ContextCompat.getColor(this.itemView.getContext(), R.color.red));
 
             /* TODO: Change colors dynamically

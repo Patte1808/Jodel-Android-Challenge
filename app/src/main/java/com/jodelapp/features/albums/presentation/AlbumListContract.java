@@ -13,11 +13,14 @@ public interface AlbumListContract {
     interface View {
 
         void loadAlbumList(List<AlbumPresentationModel> providers);
+        void albumClick(AlbumPresentationModel provider);
     }
 
     interface Presenter {
         void onAttached();
 
         void onDetached();
+
+        void showAlbumDetail(AlbumPresentationModel provider);
     }
 }

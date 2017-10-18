@@ -2,6 +2,7 @@ package com.jodelapp.features.albums.presentation;
 
 import android.util.Log;
 
+import com.jodelapp.features.albums.models.AlbumPresentationModel;
 import com.jodelapp.features.albums.usecases.GetAlbumListByUser;
 import com.jodelapp.utilities.rx.RxDisposableFactory;
 import com.jodelapp.utilities.rx.RxDisposables;
@@ -49,5 +50,10 @@ public class AlbumListPresenter implements AlbumListContract.Presenter {
     @Override
     public void onDetached() {
         disposables.clear();
+    }
+
+    @Override
+    public void showAlbumDetail(AlbumPresentationModel provider) {
+
     }
 }

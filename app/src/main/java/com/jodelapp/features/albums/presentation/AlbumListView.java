@@ -78,6 +78,11 @@ public class AlbumListView extends Fragment implements AlbumListContract.View {
         albumListAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void albumClick(AlbumPresentationModel provider) {
+        presenter.showAlbumDetail(provider);
+    }
+
     private void initViews() {
         lsUserAlbums.setLayoutManager(new LinearLayoutManager(getActivity()));
         lsUserAlbums.setHasFixedSize(true);

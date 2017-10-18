@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.jodelapp.App;
 import com.jodelapp.AppComponent;
 import com.jodelapp.R;
-import com.jodelapp.features.photos.presentation.UserPhotoListView;
+import com.jodelapp.features.albums.presentation.AlbumListView;
 import com.jodelapp.features.todos.presentation.UserTodoListView;
 
 import javax.inject.Inject;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                 break;
 
             case R.id.menu_photos:
-                fragment = UserPhotoListView.getInstance();
+                fragment = AlbumListView.getInstance();
                 break;
 
             case R.id.menu_tasks:

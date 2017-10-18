@@ -28,7 +28,6 @@ final class GetAlbumListImpl implements GetAlbumListByUser {
         this.apiService = apiService;
     }
 
-
     @Override
     public Single<List<AlbumPresentationModel>> call(@NonNull String userId) {
         return apiService.getAlbums(userId)

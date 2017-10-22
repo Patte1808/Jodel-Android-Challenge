@@ -1,11 +1,9 @@
 package com.jodelapp.features.albums.presentation;
 
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jodelapp.R;
@@ -57,14 +55,8 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     class AlbumItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected View parent;
 
-        @BindView(R.id.tv_item_album_photo)
-        ImageView tvItemPhoto;
-
         @BindView(R.id.tv_item_album_title)
         TextView tvItemTitle;
-
-        @BindView(R.id.tv_item_album_card_view)
-        CardView tvItemAlbumCardView;
 
         AlbumItemViewHolder(View view) {
             super(view);

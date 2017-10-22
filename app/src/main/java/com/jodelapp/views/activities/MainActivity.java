@@ -15,6 +15,7 @@ import com.jodelapp.AppComponent;
 import com.jodelapp.R;
 import com.jodelapp.features.albums.presentation.AlbumListView;
 import com.jodelapp.features.todos.presentation.UserTodoListView;
+import com.jodelapp.features.users.presentation.UserProfileListView;
 
 import javax.inject.Inject;
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
         switch(itemId) {
             case R.id.menu_user_profile:
-                fragment = UserTodoListView.getInstance();
+                fragment = UserProfileListView.getInstance();
                 break;
 
             case R.id.menu_photos:

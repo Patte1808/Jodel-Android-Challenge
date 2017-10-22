@@ -1,11 +1,9 @@
 package com.jodelapp.views.activities;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -36,13 +34,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private MainActivityComponent scopeGraph;
 
-    @Override
-    public void loadToDoPage() {
+    private void inflateFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.v_container, UserTodoListView.getInstance())
+                .add(R.id.v_container, fragment)
                 .commit();
     }
 
+    @Override
+    public void loadToDoPage() {
+        inflateFragment(UserTodoListView.getInstance());
+    }
+
+    @Override
+    public void loadUserAlbumPage() {
+        inflateFragment(AlbumListView.getInstance());
+    }
+
+    @Override
+    public void loadUserProfilePage() {
+        inflateFragment(UserProfileListView.getInstance());
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,40 +72,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         presenter.onDestroy();
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        selectFragmentForMenuItemId(item.getItemId());
+        presenter.selectFragmentForMenuItemId(item.getItemId());
         return true;
     }
-
-
-    public void selectFragmentForMenuItemId(@IdRes int itemId) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment;
-
-        switch(itemId) {
-            case R.id.menu_user_profile:
-                fragment = UserProfileListView.getInstance();
-                break;
-
-            case R.id.menu_photos:
-                fragment = AlbumListView.getInstance();
-                break;
-
-            case R.id.menu_tasks:
-                fragment = UserTodoListView.getInstance();
-                break;
-
-            default:
-                fragment = UserTodoListView.getInstance();
-                break;
-        }
-
-        fragmentManager.beginTransaction().replace(R.id.v_container, fragment).commit();
-    }
-
 
     private void setupScopeGraph(AppComponent appComponent) {
         scopeGraph = DaggerMainActivityComponent.builder()

@@ -7,6 +7,8 @@ public interface MainActivityContract {
 
 
         void loadToDoPage();
+        void loadUserAlbumPage();
+        void loadUserProfilePage();
     }
 
     interface Presenter {
@@ -14,5 +16,7 @@ public interface MainActivityContract {
         void onCreate();
 
         void onDestroy();
+
+        void selectFragmentForMenuItemId(int itemId);
     }
 }

@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        presenter.selectFragmentForMenuItemId(item.getItemId());
+        presenter.onNavigationItemSelected(item.getItemId());
         return true;
     }
 

@@ -1,39 +1,59 @@
 package com.jodelapp.views.activities;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import com.jodelapp.R;
-import com.jodelapp.debug.test.BuildConfig;
-import com.jodelapp.features.photos.presentation.UserPhotoListView;
-import com.jodelapp.features.todos.presentation.UserTodoListView;
+import com.jodelapp.utilities.rx.RxDisposableFactory;
+import com.jodelapp.utilities.rx.ThreadTransformer;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.mockito.Mockito.verify;
 
 
 /**
  * Created by Pattelicious on 22.10.17.
  */
 
+@RunWith(MockitoJUnitRunner.class)
 public class AndroidMainActivityTest {
 
-    @Mock
-    MainActivityPresenter presenter;
+    MainActivityContract.Presenter presenter;
 
+    @Mock
+    MainActivityContract.View view;
+
+    @Mock
+    ThreadTransformer threadTransformer;
+
+    @Mock
+    RxDisposableFactory rxDisposableFactory;
+
+    @Before
+    public void setUp() throws Exception {
+        presenter = new MainActivityPresenter(view, threadTransformer, rxDisposableFactory);
+    }
 
     @Test
     public void shouldOpenToDoView_onToDoItemClicked(){
-        presenter.selectFragmentForMenuItemId(R.id.menu_tasks);
+        presenter.onNavigationItemSelected(R.id.menu_tasks);
 
-        verify(view).goToView(isA(UserTodoListView.class));
+        verify(view).loadToDoPage();
     }
 
     @Test
     public void shouldOpenPhotoView_onPhotoItemClicked(){
         presenter.onNavigationItemSelected(R.id.menu_photos);
 
-        verify(view).goToView(isA(UserPhotoListView.class));
+        verify(view).loadUserAlbumPage();
+    }
+
+    @Test
+    public void shouldOpenProfileView_onProfileItemClicked(){
+        presenter.onNavigationItemSelected(R.id.menu_user_profile);
+
+        verify(view).loadUserProfilePage();
     }
 }

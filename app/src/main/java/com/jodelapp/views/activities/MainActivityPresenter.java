@@ -32,7 +32,7 @@ public final class MainActivityPresenter implements MainActivityContract.Present
     }
 
     @Override
-    public void selectFragmentForMenuItemId(int itemId) {
+    public void onNavigationItemSelected(int itemId) {
         switch(itemId) {
             case R.id.menu_user_profile:
                 view.loadUserProfilePage();

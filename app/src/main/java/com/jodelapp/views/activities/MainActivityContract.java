@@ -17,6 +17,6 @@ public interface MainActivityContract {
 
         void onDestroy();
 
-        void selectFragmentForMenuItemId(int itemId);
+        void onNavigationItemSelected(int itemId);
     }
 }

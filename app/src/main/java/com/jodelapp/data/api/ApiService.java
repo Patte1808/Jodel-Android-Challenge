@@ -25,4 +25,7 @@ public interface ApiService {
 
     @GET("/users")
     Observable<List<User>> getUsers();
+
+    @GET("/users")
+    Observable<User> getUser(@Query("userId") String userId);
 }

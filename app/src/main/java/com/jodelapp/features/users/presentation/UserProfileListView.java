@@ -35,6 +35,9 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
     @BindView(R.id.ls_username)
     TextView lsUserName;
 
+    @BindView(R.id.ls_email)
+    TextView lsUserEmail;
+
     @BindView(R.id.ls_user_profiles)
     RecyclerView lsUserProfiles;
 
@@ -76,6 +79,7 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
         adapter.notifyDataSetChanged();
 
         lsUserName.setText(users.get(1).getUsername());
+        lsUserEmail.setText(users.get(1).getEmail());
     }
 
     private void initViews() {

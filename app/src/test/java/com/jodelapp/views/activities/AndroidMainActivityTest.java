@@ -17,6 +17,9 @@ import static org.mockito.Mockito.verify;
  * Created by Pattelicious on 22.10.17.
  */
 
+/*
+    TODO: Rename test, as I'm testing the presenter
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class AndroidMainActivityTest {
 

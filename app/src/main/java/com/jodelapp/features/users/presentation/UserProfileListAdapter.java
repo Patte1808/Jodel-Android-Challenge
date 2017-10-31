@@ -1,6 +1,7 @@
 package com.jodelapp.features.users.presentation;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +23,22 @@ import butterknife.ButterKnife;
 public class UserProfileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<UserProfilePresentationModel> profileDataList = new ArrayList<>();
+    private final View.OnClickListener onClickListener;
 
-    public UserProfileListAdapter(List<UserProfilePresentationModel> profileDataList) {
+    public UserProfileListAdapter(List<UserProfilePresentationModel> profileDataList,
+                                  View.OnClickListener onClickListener) {
         this.profileDataList.clear();
         this.profileDataList.addAll(profileDataList);
+        this.onClickListener = onClickListener;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new UserProfileItemViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_user_profile, parent, false));
+
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list_user_profile, parent, false);
+        v.setOnClickListener(onClickListener);
+        return new UserProfileItemViewHolder(v);
     }
 
     @Override
@@ -47,17 +54,26 @@ public class UserProfileListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-    class UserProfileItemViewHolder extends RecyclerView.ViewHolder {
+    class UserProfileItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        protected View parent;
+
         @BindView(R.id.tv_item_username)
         TextView tvItemUsername;
 
         UserProfileItemViewHolder(View view) {
             super(view);
+            parent = ((ViewGroup) view).getChildAt(0);
             ButterKnife.bind(this, view);
         }
 
         void render(UserProfilePresentationModel userProfilePresentationModel) {
             tvItemUsername.setText(userProfilePresentationModel.getUsername());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.wtf("Adasd", "onClick: Asdasd");
+            onClickListener.onClick(parent);
         }
     }
 }

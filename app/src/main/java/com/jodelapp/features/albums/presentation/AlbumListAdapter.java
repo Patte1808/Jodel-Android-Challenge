@@ -4,13 +4,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jodelapp.R;
 import com.jodelapp.features.albums.models.AlbumPresentationModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +61,12 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.tv_item_album_title)
         TextView tvItemTitle;
 
+        @BindView(R.id.thumbnail)
+        ImageView thumbnail;
+
+        @BindView(R.id.photo_count)
+        TextView photoCount;
+
         AlbumItemViewHolder(View view) {
             super(view);
             parent = ((ViewGroup) view).getChildAt(0);
@@ -74,6 +83,10 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             /*Picasso.with(this.itemView.getContext()).load(albumPresentationModel.getUrl())
                     .into(tvItemPhoto);*/
             tvItemTitle.setText(albumPresentationModel.getTitle());
+            Picasso.with(this.itemView.getContext()).load("http://via.placeholder.com/350x150")
+                    .into(thumbnail);
+
+            photoCount.setText(new Random().nextInt() + " photos");
 
             //tvItemPhotoCardView.setCardBackgroundColor(ContextCompat.getColor(this.itemView.getContext(), R.color.red));
 

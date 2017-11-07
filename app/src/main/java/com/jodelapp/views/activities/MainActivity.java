@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private void inflateFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.v_container, fragment)
+                .replace(R.id.v_container, fragment)
                 .commit();
     }
 

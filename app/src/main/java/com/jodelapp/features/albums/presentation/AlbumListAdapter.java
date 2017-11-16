@@ -13,7 +13,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,9 +63,6 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @BindView(R.id.thumbnail)
         ImageView thumbnail;
 
-        @BindView(R.id.photo_count)
-        TextView photoCount;
-
         AlbumItemViewHolder(View view) {
             super(view);
             parent = ((ViewGroup) view).getChildAt(0);
@@ -83,41 +79,8 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             /*Picasso.with(this.itemView.getContext()).load(albumPresentationModel.getUrl())
                     .into(tvItemPhoto);*/
             tvItemTitle.setText(albumPresentationModel.getTitle());
-            Picasso.with(this.itemView.getContext()).load("http://via.placeholder.com/350x150")
+            Picasso.with(this.itemView.getContext()).load(R.mipmap.jodellogo)
                     .into(thumbnail);
-
-            photoCount.setText(new Random().nextInt() + " photos");
-
-            //tvItemPhotoCardView.setCardBackgroundColor(ContextCompat.getColor(this.itemView.getContext(), R.color.red));
-
-            /* TODO: Change colors dynamically
-            int currentColorPosition = getAdapterPosition() % Color.values().length;
-            Color color;
-
-            switch(currentColorPosition) {
-                case 0:
-                    color = Color.BLUE;
-                    break;
-                case 1:
-                    color = Color.RED;
-                    break;
-                case 3:
-                    color = Color.YELLOW;
-                    break;
-                case 4:
-                    color = Color.GREEN;
-                    break;
-                case 5:
-                    color = Color.TURQUOISE;
-                    break;
-                case 6:
-                    color = Color.ORANGE;
-                    break;
-                default:
-                    color = Color.BLUE;
-                    break;
-            }
-            */
         }
     }
 }

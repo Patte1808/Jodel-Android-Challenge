@@ -36,7 +36,7 @@ public class UserProfileListPresenter implements UserProfileListContract.Present
                 .compose(threadTransformer.applySchedulers())
                 .subscribe(
                         users -> view.loadUserList(users),
-                        error -> Log.e("UserProfileList", error.getMessage())
+                        error -> Log.e("UserProfileList test", error.getMessage())
                 ));
     }
 

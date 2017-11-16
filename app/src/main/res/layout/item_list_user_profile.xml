@@ -6,7 +6,8 @@
     android:minHeight="60dp"
     android:orientation="horizontal"
     android:paddingBottom="2dp"
-    android:paddingTop="2dp">
+    android:paddingTop="2dp"
+    android:id="@+id/user_profile_container">
 
     <TextView
         android:id="@+id/tv_item_username"

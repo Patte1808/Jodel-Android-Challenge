@@ -3,7 +3,8 @@
     <item
         android:id="@+id/menu_tasks"
         android:title="@string/tasks"
-        android:icon="@drawable/ic_mode_edit_black_24dp" />
+        android:icon="@drawable/ic_mode_edit_black_24dp"
+        />
     <item
         android:id="@+id/menu_photos"
         android:title="@string/photos"

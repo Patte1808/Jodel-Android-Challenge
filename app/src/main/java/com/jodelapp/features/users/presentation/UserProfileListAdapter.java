@@ -1,7 +1,6 @@
 package com.jodelapp.features.users.presentation;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +44,7 @@ public class UserProfileListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         UserProfilePresentationModel userProfilePresentationModel = profileDataList.get(position);
         ((UserProfileItemViewHolder) holder).render(userProfilePresentationModel);
+        ((UserProfileItemViewHolder) holder).itemContainer.setOnClickListener(onClickListener);
     }
 
 
@@ -60,6 +60,9 @@ public class UserProfileListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         @BindView(R.id.tv_item_username)
         TextView tvItemUsername;
 
+        @BindView(R.id.user_profile_container)
+        View itemContainer;
+
         UserProfileItemViewHolder(View view) {
             super(view);
             parent = ((ViewGroup) view).getChildAt(0);
@@ -72,7 +75,6 @@ public class UserProfileListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         @Override
         public void onClick(View view) {
-            Log.wtf("Adasd", "onClick: Asdasd");
             onClickListener.onClick(parent);
         }
     }

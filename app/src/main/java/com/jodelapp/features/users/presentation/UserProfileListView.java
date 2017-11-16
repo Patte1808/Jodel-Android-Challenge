@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.jodelapp.App;
 import com.jodelapp.AppComponent;
 import com.jodelapp.R;
-import com.jodelapp.data.Repository;
 import com.jodelapp.features.users.models.UserProfilePresentationModel;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,6 +45,8 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
     private UserProfileListComponent scopeGraph;
     private Unbinder unbinder;
 
+    private List<UserProfilePresentationModel> users;
+
     UserProfilePresentationModel selectedUser;
 
     public static UserProfileListView getInstance() {
@@ -56,6 +58,7 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
         View view = inflater.inflate(R.layout.fragment_users, container, false);
         setupScopeGraph(App.get(getActivity()).getAppComponent());
         unbinder = ButterKnife.bind(this, view);
+        lsUserProfiles.setAdapter(new UserProfileListAdapter(Collections.emptyList(), this));
         initViews();
         return view;
     }
@@ -75,8 +78,9 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
 
     @Override
     public void loadUserList(List<UserProfilePresentationModel> users) {
+        users = users;
         UserProfileListAdapter adapter = new UserProfileListAdapter(users, this);
-        lsUserName.setText(Repository.getInstance().getCurrentUserId() + "");
+        lsUserName.setText(users.get(1).getUsername());
         lsUserEmail.setText(users.get(1).getEmail());
         lsUserProfiles.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -97,8 +101,8 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
 
     @Override
     public void onClick(View view) {
-        selectedUser = (UserProfilePresentationModel) view.getTag();
-        Repository.getInstance().setCurrentUserId(selectedUser.getId());
-        lsUserName.setText(Repository.getInstance().getCurrentUserId());
+        //selectedUser = (UserProfilePresentationModel) users.get(itemPosition);
+        //EventBus.getDefault().postSticky(selectedUser);
+        //lsUserName.setText(selectedUser.getUsername());
     }
 }

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.jodelapp.R;
@@ -48,7 +49,7 @@ public class UserTodoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         @BindView(R.id.tv_item_todo)
         TextView tvItemToDo;
         @BindView(R.id.tv_item_status)
-        TextView tvItemStatus;
+        CheckBox tvItemStatus;
 
         ToDoItemViewHolder(View view) {
             super(view);
@@ -57,7 +58,7 @@ public class UserTodoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         void render(TodoPresentationModel todoPresentationModel) {
             tvItemToDo.setText(todoPresentationModel.getTitle());
-            tvItemStatus.setText(todoPresentationModel.getStatus());
+            tvItemStatus.setChecked(todoPresentationModel.getStatus());
         }
     }
 }

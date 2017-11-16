@@ -31,7 +31,7 @@ final class GetTodoListByUserImpl implements GetTodoListByUser {
     public Single<List<TodoPresentationModel>> call(@NonNull String userId) {
         return apiService.getToDos(userId)
                 .flatMapIterable(todos -> todos)
-                .map(toDo -> new TodoPresentationModel(String.valueOf(toDo.getId()), toDo.getTitle(), toDo.getCompleted() ? "done" : "todo"))
+                .map(toDo -> new TodoPresentationModel(String.valueOf(toDo.getId()), toDo.getTitle(), toDo.getCompleted()))
                 .toList();
     }
 }

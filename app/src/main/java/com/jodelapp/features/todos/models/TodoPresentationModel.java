@@ -5,9 +5,9 @@ public class TodoPresentationModel {
 
     private String id;
     private String title;
-    private String status;
+    private Boolean status;
 
-    public TodoPresentationModel(String id, String title, String status) {
+    public TodoPresentationModel(String id, String title, Boolean status) {
         this.id = id;
         this.title = title;
         this.status = status;
@@ -21,7 +21,7 @@ public class TodoPresentationModel {
         return title;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 }

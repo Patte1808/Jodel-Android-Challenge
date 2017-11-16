@@ -1,10 +1,12 @@
 package com.jodelapp.features.users.presentation;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.jodelapp.App;
 import com.jodelapp.AppComponent;
+import com.jodelapp.Consts;
 import com.jodelapp.R;
 import com.jodelapp.features.users.models.UserProfilePresentationModel;
 
@@ -28,10 +31,14 @@ import butterknife.Unbinder;
  * Created by Pattelicious on 22.10.17.
  */
 
-public class UserProfileListView extends Fragment implements UserProfileListContract.View, View.OnClickListener {
+public class UserProfileListView extends Fragment implements UserProfileListContract.View,
+        View.OnClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Inject
     UserProfileListContract.Presenter presenter;
+
+    @Inject
+    SharedPreferences sharedPreferences;
 
     @BindView(R.id.ls_username)
     TextView lsUserName;
@@ -77,6 +84,18 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
     public void loadUserList(List<UserProfilePresentationModel> users) {
         users = users;
         UserProfileListAdapter adapter = new UserProfileListAdapter(users, this);
@@ -101,8 +120,22 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
 
     @Override
     public void onClick(View view) {
-        //selectedUser = (UserProfilePresentationModel) users.get(itemPosition);
+        selectedUser = (UserProfilePresentationModel) view.getTag();
+        /*
+            Todo:
+            Is using EventBus in this case good practice?
+         */
         //EventBus.getDefault().postSticky(selectedUser);
-        //lsUserName.setText(selectedUser.getUsername());
+
+        sharedPreferences.edit().putString(Consts.SHARED_PREF_CURRENT_USER,
+                selectedUser.getId()).commit();
+
+        Log.wtf("Change", "onClick: " );
+
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        lsUserName.setText(sharedPreferences.getString(key, null));
     }
 }

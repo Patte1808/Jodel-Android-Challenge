@@ -71,6 +71,7 @@ public class UserProfileListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         void render(UserProfilePresentationModel userProfilePresentationModel) {
             tvItemUsername.setText(userProfilePresentationModel.getUsername());
+            itemView.setTag(userProfilePresentationModel);
         }
 
         @Override

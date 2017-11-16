@@ -18,9 +18,9 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 public class AlbumListAdapterTest {
 
-    RecyclerView recyclerView = Mockito.mock(RecyclerView.class);
-
     void shouldOpenPhotoView_onClickItem() {
+
+        RecyclerView recyclerView = Mockito.mock(RecyclerView.class);
         List<AlbumPresentationModel> items = new ArrayList<>();
         AlbumPresentationModel albumPresentationModel = Mockito.mock(AlbumPresentationModel.class);
         items.add(albumPresentationModel);
@@ -31,6 +31,5 @@ public class AlbumListAdapterTest {
             How to handle that?
          */
         //AlbumListAdapter adapter = Mockito.when(AlbumListAdapter.class)
-
     }
 }

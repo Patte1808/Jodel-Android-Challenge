@@ -2,6 +2,7 @@ package com.jodelapp;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 import com.jodelapp.data.DataComponent;
@@ -31,5 +32,7 @@ public interface AppComponent extends UtilsComponent, DataComponent {
     Locale exposeLocale();
 
     EventBus exposeBus();
+
+    SharedPreferences sharedPreferences();
 
 }

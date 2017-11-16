@@ -10,6 +10,7 @@ public interface UserPhotoListContract {
     interface View {
 
         void loadPhotoList(List<PhotoPresentationModel> providers);
+        String getAlbumId();
     }
 
     interface Presenter {

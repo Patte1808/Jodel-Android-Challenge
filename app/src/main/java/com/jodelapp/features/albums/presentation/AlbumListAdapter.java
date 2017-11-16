@@ -81,6 +81,7 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvItemTitle.setText(albumPresentationModel.getTitle());
             Picasso.with(this.itemView.getContext()).load(R.mipmap.jodellogo)
                     .into(thumbnail);
+            itemView.setTag(albumPresentationModel);
         }
     }
 }

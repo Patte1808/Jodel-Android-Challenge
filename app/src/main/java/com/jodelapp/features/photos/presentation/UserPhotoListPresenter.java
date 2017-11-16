@@ -11,8 +11,6 @@ import javax.inject.Inject;
 
 public final class UserPhotoListPresenter implements UserPhotoListContract.Presenter {
 
-    private static final String ALBUM_ID = "1";
-
     private final UserPhotoListContract.View view;
     private final GetPhotoListByAlbum getPhotoListByAlbum;
     private final ThreadTransformer threadTransformer;
@@ -33,7 +31,7 @@ public final class UserPhotoListPresenter implements UserPhotoListContract.Prese
 
     @Override
     public void onAttached() {
-        disposables.add(getPhotoListByAlbum.call(ALBUM_ID)
+        disposables.add(getPhotoListByAlbum.call(view.getAlbumId())
                         .compose(threadTransformer.applySchedulers())
                         .subscribe(
                                 photos -> view.loadPhotoList(photos),

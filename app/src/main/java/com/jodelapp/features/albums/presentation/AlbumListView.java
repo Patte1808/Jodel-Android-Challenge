@@ -141,7 +141,7 @@ public class AlbumListView extends Fragment implements AlbumListContract.View, V
     public void onClick(View view) {
         selectedAlbum = (AlbumPresentationModel) view.getTag();
         FragmentManager fragmentManager = getFragmentManager();
-        Fragment fragment = UserPhotoListView.getInstance();
+        Fragment fragment = UserPhotoListView.getInstance(selectedAlbum.getId());
 
         fragmentManager.beginTransaction().replace(R.id.v_container, fragment).addToBackStack("photo_list").commit();
     }

@@ -32,7 +32,8 @@ final class GetAlbumListImpl implements GetAlbumListByUser {
     public Single<List<AlbumPresentationModel>> call(@NonNull String userId) {
         return apiService.getAlbums(userId)
                 .flatMapIterable(albums -> albums)
-                .map(album -> new AlbumPresentationModel(String.valueOf(album.getId()), String.valueOf(album.getUserId()), album.getTitle()))
+                .map(album -> new AlbumPresentationModel(String.valueOf(album.getUserId()),
+                        String.valueOf(album.getId()), album.getTitle()))
                 .toList();
     }
 }

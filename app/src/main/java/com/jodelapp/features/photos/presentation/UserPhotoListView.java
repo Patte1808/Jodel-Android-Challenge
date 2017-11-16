@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/*
+    Should this be an activity rather than a fragment?
+ */
 public class UserPhotoListView extends Fragment implements UserPhotoListContract.View {
 
 
@@ -33,9 +37,19 @@ public class UserPhotoListView extends Fragment implements UserPhotoListContract
 
     private UserPhotoListComponent scopeGraph;
     private Unbinder unbinder;
+    private String albumId;
 
-    public static UserPhotoListView getInstance() {
-        return new UserPhotoListView();
+    public String getAlbumId() {
+        return albumId;
+    }
+
+    public static UserPhotoListView getInstance(String albumId) {
+        UserPhotoListView userPhotoListView = new UserPhotoListView();
+        Bundle bundle = new Bundle();
+        bundle.putString("albumId", albumId);
+        userPhotoListView.setArguments(bundle);
+
+        return userPhotoListView;
     }
 
     @Override
@@ -43,6 +57,8 @@ public class UserPhotoListView extends Fragment implements UserPhotoListContract
         View view = inflater.inflate(R.layout.fragment_photos, container, false);
         setupScopeGraph(App.get(getActivity()).getAppComponent());
         unbinder = ButterKnife.bind(this, view);
+        this.albumId = getArguments().getString("albumId");
+        Log.wtf("UserPhotoListView", "onCreateView: " + this.albumId);
         initViews();
         return view;
     }

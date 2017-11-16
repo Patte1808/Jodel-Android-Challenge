@@ -3,6 +3,7 @@ package com.jodelapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 import org.greenrobot.eventbus.EventBus;
@@ -45,6 +46,12 @@ public class AppModule {
     @Singleton
     EventBus provideEventBus() {
         return EventBus.getDefault();
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences provideSharedPreferences() {
+        return appContext.getSharedPreferences(Consts.SHARED_PREF_NAME, Context.MODE_PRIVATE);
     }
 
 }

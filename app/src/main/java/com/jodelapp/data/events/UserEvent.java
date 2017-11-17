@@ -6,6 +6,7 @@ import com.jodelapp.features.users.models.UserProfilePresentationModel;
  * Created by Pattelicious on 08.11.17.
  */
 
+
 public class UserEvent {
     private UserProfilePresentationModel userProfile;
 

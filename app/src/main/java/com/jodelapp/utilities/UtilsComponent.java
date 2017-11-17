@@ -9,4 +9,5 @@ public interface UtilsComponent {
 
     ThreadTransformer exposeThreadTransformer();
 
+    Preferences exposePreferences();
 }

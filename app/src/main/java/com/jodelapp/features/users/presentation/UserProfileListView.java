@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.jodelapp.App;
 import com.jodelapp.AppComponent;
-import com.jodelapp.Consts;
 import com.jodelapp.R;
 import com.jodelapp.features.users.models.UserProfilePresentationModel;
+import com.jodelapp.utilities.Preferences;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -39,7 +39,7 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
     UserProfileListContract.Presenter presenter;
 
     @Inject
-    SharedPreferences sharedPreferences;
+    Preferences sharedPreferences;
 
     @BindView(R.id.ls_username)
     TextView lsUserName;
@@ -87,13 +87,13 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
     @Override
     public void onResume() {
         super.onResume();
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -128,8 +128,7 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
          */
         //EventBus.getDefault().postSticky(selectedUser);
 
-        sharedPreferences.edit().putString(Consts.SHARED_PREF_CURRENT_USER,
-                selectedUser.getId()).commit();
+        sharedPreferences.setCurrentUser(selectedUser.getId());
 
         Log.wtf("Change", "onClick: " );
 

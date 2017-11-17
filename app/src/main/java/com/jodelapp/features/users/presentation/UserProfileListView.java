@@ -19,7 +19,6 @@ import com.jodelapp.features.users.models.UserProfilePresentationModel;
 import com.jodelapp.utilities.Preferences;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -140,19 +139,9 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
      */
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        String id = sharedPreferences.getString(key, null);
-        if(users != null) {
-            Iterator<UserProfilePresentationModel> it = users.iterator();
+        UserProfilePresentationModel currentUser = this.sharedPreferences.getCurrentUser(this.users);
 
-            while (it.hasNext()) {
-                UserProfilePresentationModel currentUserProfile = it.next();
-                if (currentUserProfile.getId().equals(id)) {
-                    lsUserName.setText(currentUserProfile.getUsername());
-                    lsUserEmail.setText(currentUserProfile.getEmail());
-
-                    break;
-                }
-            }
-        }
+        lsUserName.setText(currentUser.getUsername());
+        lsUserEmail.setText(currentUser.getEmail());
     }
 }

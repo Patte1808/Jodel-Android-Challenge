@@ -2,6 +2,7 @@ package com.jodelapp.utilities
 
 import android.content.SharedPreferences
 import com.jodelapp.Consts
+import com.jodelapp.features.users.models.UserProfilePresentationModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,5 +17,9 @@ import javax.inject.Singleton
 
     fun getCurrentUser(): String {
         return sharedPreferences.getString(Consts.SHARED_PREF_CURRENT_USER, "1");
+    }
+
+    fun getCurrentUser(userList: List<UserProfilePresentationModel>): UserProfilePresentationModel {
+        return userList.filter { user -> user.id == getCurrentUser() }.first();
     }
 }

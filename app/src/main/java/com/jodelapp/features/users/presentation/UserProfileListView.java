@@ -134,6 +134,10 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
 
     }
 
+    /*
+        Todo:
+        This is not ideal yet, because there could be other keys whose value can change.
+     */
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         String id = sharedPreferences.getString(key, null);

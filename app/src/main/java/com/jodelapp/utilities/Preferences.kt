@@ -13,4 +13,8 @@ import javax.inject.Singleton
     fun setCurrentUser(currentUserId: String) {
         sharedPreferences.edit().putString(Consts.SHARED_PREF_CURRENT_USER, currentUserId).commit();
     }
+
+    fun getCurrentUser(): String {
+        return sharedPreferences.getString(Consts.SHARED_PREF_CURRENT_USER, "1");
+    }
 }

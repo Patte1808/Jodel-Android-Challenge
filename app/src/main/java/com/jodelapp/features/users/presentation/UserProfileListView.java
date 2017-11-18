@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,9 +97,10 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
     @Override
     public void loadUserList(List<UserProfilePresentationModel> users) {
         this.users = users;
+        UserProfilePresentationModel currentUser = sharedPreferences.getCurrentUser(users);
         UserProfileListAdapter adapter = new UserProfileListAdapter(users, this);
-        lsUserName.setText(users.get(1).getUsername());
-        lsUserEmail.setText(users.get(1).getEmail());
+        lsUserName.setText(currentUser.getUsername());
+        lsUserEmail.setText(currentUser.getEmail());
         lsUserProfiles.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -128,8 +128,6 @@ public class UserProfileListView extends Fragment implements UserProfileListCont
         //EventBus.getDefault().postSticky(selectedUser);
 
         sharedPreferences.setCurrentUser(selectedUser.getId());
-
-        Log.wtf("Change", "onClick: " );
 
     }
 

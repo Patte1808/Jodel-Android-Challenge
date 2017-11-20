@@ -20,6 +20,6 @@ import javax.inject.Singleton
     }
 
     fun getCurrentUser(userList: List<UserProfilePresentationModel>): UserProfilePresentationModel {
-        return userList.filter { user -> user.id == getCurrentUser() }.first();
+        return userList.filter { user -> user.id == getCurrentUser() }.single();
     }
 }

@@ -61,7 +61,9 @@ dependencies {
             'appcompat-v7',
             'recyclerview-v7',
             'cardview-v7',
-            'support-annotations'
+            'support-annotations',
+            'preference-v7',
+            'preference-v14'
     ].each {
         compile "com.android.support:${it}:${supportVersion}"
     }

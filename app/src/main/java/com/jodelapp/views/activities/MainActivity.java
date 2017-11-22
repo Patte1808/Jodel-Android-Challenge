@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         presenter.onCreate();
     }
 
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();

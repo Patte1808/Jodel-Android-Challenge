@@ -32,7 +32,8 @@ android:layout_height="wrap_content">
             android:textColor="@color/black"
             android:textSize="18sp"
             android:paddingLeft="@dimen/album_title_padding"
-            android:paddingRight="@dimen/album_title_padding"/>
+            android:paddingRight="@dimen/album_title_padding"
+            android:paddingBottom="@dimen/album_title_padding"/>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
